@@ -143,33 +143,33 @@ export default function LandingPage() {
           <p className="opacity-70 max-w-2xl mx-auto">{t.gallery.description}</p>
         </div>
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6">
-          <BeforeAfterSlider 
-            small 
-            before="/Bilder/01. Burger/ComfyUI_00014_.png" 
-            after="/Bilder/01. Burger/9a1665a7f96af1784301573c10f7749a.webp" 
-            beforeLabel={t.hero.slider.before} 
-            afterLabel={t.hero.slider.after} 
+          <BeforeAfterSlider
+            small
+            before="/Bilder/01. Burger/ComfyUI_00014_.png"
+            after="/Bilder/01. Burger/9a1665a7f96af1784301573c10f7749a.webp"
+            beforeLabel={t.hero.slider.before}
+            afterLabel={t.hero.slider.after}
           />
-          <BeforeAfterSlider 
-            small 
-            before="/Bilder/10. Schnitzel/ComfyUI_00006_.png" 
-            after="/Bilder/10. Schnitzel/ae5645f9e169079abe48c27905b377d7.webp" 
-            beforeLabel={t.hero.slider.before} 
-            afterLabel={t.hero.slider.after} 
+          <BeforeAfterSlider
+            small
+            before="/Bilder/10. Schnitzel/ComfyUI_00006_.png"
+            after="/Bilder/10. Schnitzel/ae5645f9e169079abe48c27905b377d7.webp"
+            beforeLabel={t.hero.slider.before}
+            afterLabel={t.hero.slider.after}
           />
-          <BeforeAfterSlider 
-            small 
-            before="/Bilder/03. Pizza/Salami/ComfyUI_00334_.png" 
-            after="/Bilder/03. Pizza/Salami/4b09eec69085b65ca49f30a5ef8e0543.webp" 
-            beforeLabel={t.hero.slider.before} 
-            afterLabel={t.hero.slider.after} 
+          <BeforeAfterSlider
+            small
+            before="/Bilder/03. Pizza/Salami/ComfyUI_00334_.png"
+            after="/Bilder/03. Pizza/Salami/4b09eec69085b65ca49f30a5ef8e0543.webp"
+            beforeLabel={t.hero.slider.before}
+            afterLabel={t.hero.slider.after}
           />
-          <BeforeAfterSlider 
-            small 
-            before="/Bilder/05. Sushi/ComfyUI_00015_.png" 
-            after="/Bilder/05. Sushi/7783d6ef9218bdcf1f52479ea830f1b3.webp" 
-            beforeLabel={t.hero.slider.before} 
-            afterLabel={t.hero.slider.after} 
+          <BeforeAfterSlider
+            small
+            before="/Bilder/05. Sushi/ComfyUI_00015_.png"
+            after="/Bilder/05. Sushi/7783d6ef9218bdcf1f52479ea830f1b3.webp"
+            beforeLabel={t.hero.slider.before}
+            afterLabel={t.hero.slider.after}
           />
         </div>
       </section>
@@ -210,7 +210,7 @@ export default function LandingPage() {
           {Object.entries(t.faq).filter(([k]) => k.startsWith('q')).map(([key, item], i) => (
             <div key={key} className="bg-white dark:bg-sage/10 border border-sage/10 rounded-xl overflow-hidden">
               <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full px-6 py-5 flex justify-between items-center text-left">
-                <span className="font-heading font-bold">{ (item as any).q }</span>
+                <span className="font-heading font-bold">{(item as any).q}</span>
                 <span className={`material-icons transition-transform ${openFaq === i ? 'rotate-180' : ''}`}>expand_more</span>
               </button>
               {openFaq === i && <div className="px-6 pb-5 opacity-70 text-sm leading-relaxed">{(item as any).a}</div>}
@@ -363,7 +363,7 @@ function BeforeAfterSlider({ before, after, small = false, beforeLabel = "Origin
   };
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={`ba-container ${small ? 'ba-container-sm' : ''} shadow-2xl border-4 border-terracotta relative overflow-hidden group cursor-ew-resize aspect-square w-full max-w-xl mx-auto rounded-3xl`}
       onMouseMove={(e) => handleMove(e.clientX)}
@@ -373,15 +373,15 @@ function BeforeAfterSlider({ before, after, small = false, beforeLabel = "Origin
       {/* Swap labels: Optimiert on the left, Original on the right */}
       <div className="ba-label ba-label-before absolute top-4 left-4 z-20 px-3 py-1 bg-terracotta/80 text-white text-[10px] font-bold uppercase tracking-widest rounded-full opacity-0 group-hover:opacity-100 transition-opacity">{afterLabel}</div>
       <div className="ba-label ba-label-after absolute top-4 right-4 z-20 px-3 py-1 bg-black/50 text-white text-[10px] font-bold uppercase tracking-widest rounded-full opacity-0 group-hover:opacity-100 transition-opacity">{beforeLabel}</div>
-      
+
       {/* Background is the BEFORE (Original) image - fixed at the bottom (revealed on the right) */}
       <div className="ba-background absolute inset-0 bg-cover bg-center pointer-events-none" style={{ backgroundImage: `url('${before}')` }}></div>
-      
+
       {/* Foreground is the AFTER (Optimiert) image - sliding overlay on the left */}
       <div className="ba-foreground absolute inset-0 overflow-hidden z-10 pointer-events-none" style={{ width: `${position}%` }}>
         <div className="absolute top-0 left-0 h-full bg-cover bg-center" style={{ backgroundImage: `url('${after}')`, width: '100cqw' }}></div>
       </div>
-      
+
       {/* Slider Handle */}
       <div className="ba-slider absolute top-0 bottom-0 w-1 bg-terracotta z-20 pointer-events-none" style={{ left: `${position}%` }}>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-terracotta rounded-full flex items-center justify-center text-white shadow-xl">
