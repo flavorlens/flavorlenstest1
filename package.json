@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:cloudflare": "opennextjs-cloudflare build",
-    "deploy:cloudflare": "opennextjs-cloudflare deploy",
+    "build:cloudflare": "opennextjs-cloudflare",
+    "deploy:cloudflare": "npm run build:cloudflare && wrangler deploy",
     "upload:cloudflare": "opennextjs-cloudflare upload"
   },
   "dependencies": {
