@@ -370,15 +370,16 @@ function BeforeAfterSlider({ before, after, small = false, beforeLabel = "Origin
       onTouchMove={(e) => handleMove(e.touches[0].clientX)}
       onClick={(e) => handleMove(e.clientX)}
     >
-      <div className="ba-label ba-label-before absolute top-4 left-4 z-20 px-3 py-1 bg-black/50 text-white text-[10px] font-bold uppercase tracking-widest rounded-full opacity-0 group-hover:opacity-100 transition-opacity">{beforeLabel}</div>
-      <div className="ba-label ba-label-after absolute top-4 right-4 z-20 px-3 py-1 bg-terracotta/80 text-white text-[10px] font-bold uppercase tracking-widest rounded-full opacity-0 group-hover:opacity-100 transition-opacity">{afterLabel}</div>
+      {/* Swap labels: Optimiert on the left, Original on the right */}
+      <div className="ba-label ba-label-before absolute top-4 left-4 z-20 px-3 py-1 bg-terracotta/80 text-white text-[10px] font-bold uppercase tracking-widest rounded-full opacity-0 group-hover:opacity-100 transition-opacity">{afterLabel}</div>
+      <div className="ba-label ba-label-after absolute top-4 right-4 z-20 px-3 py-1 bg-black/50 text-white text-[10px] font-bold uppercase tracking-widest rounded-full opacity-0 group-hover:opacity-100 transition-opacity">{beforeLabel}</div>
       
-      {/* Background is the AFTER (Optimiert) image - fixed at the bottom */}
-      <div className="ba-background absolute inset-0 bg-cover bg-center pointer-events-none" style={{ backgroundImage: `url('${after}')` }}></div>
+      {/* Background is the BEFORE (Original) image - fixed at the bottom (revealed on the right) */}
+      <div className="ba-background absolute inset-0 bg-cover bg-center pointer-events-none" style={{ backgroundImage: `url('${before}')` }}></div>
       
-      {/* Foreground is the BEFORE (Original) image - sliding overlay on the left */}
+      {/* Foreground is the AFTER (Optimiert) image - sliding overlay on the left */}
       <div className="ba-foreground absolute inset-0 overflow-hidden z-10 pointer-events-none" style={{ width: `${position}%` }}>
-        <div className="absolute top-0 left-0 h-full bg-cover bg-center" style={{ backgroundImage: `url('${before}')`, width: '100cqw' }}></div>
+        <div className="absolute top-0 left-0 h-full bg-cover bg-center" style={{ backgroundImage: `url('${after}')`, width: '100cqw' }}></div>
       </div>
       
       {/* Slider Handle */}
