@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --terracotta: #A0522D;
+  --terracotta-hover: #8B4513;
+  --background-light: #F5F0E1;
+  --background-dark: #1a1f1a;
+  --sage: #3C4A3E;
+  --slider-handle-size: 48px;
+  --slider-border-width: 4px;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--background-light)] dark:bg-[var(--background-dark)] text-[var(--sage)] dark:text-[var(--background-light)] transition-colors duration-500;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.ba-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  cursor: ew-resize;
+  user-select: none;
+  background-color: #eee;
+  container-type: inline-size;
+}
+
+.ba-background,
+.ba-foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.ba-foreground {
+  width: 50%;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.ba-foreground div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100cqw;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.ba-slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: var(--terracotta);
+  z-index: 20;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.ba-slider::after {
+  content: "unfold_more";
+  font-family: 'Material Icons';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  width: 32px;
+  height: 32px;
+  background-color: var(--terracotta);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+}
+
+.ba-label {
+  position: absolute;
+  top: 24px;
+  padding: 6px 16px;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 25;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ba-label-before { left: 24px; }
+.ba-label-after { right: 24px; }
+
+.ba-container-sm .ba-label {
+  top: 16px;
+  padding: 4px 10px;
+  font-size: 9px;
+  backdrop-filter: blur(4px);
+}
+
+.ba-container-sm .ba-label-before { left: 16px; }
+.ba-container-sm .ba-label-after { right: 16px; }
+
+.ba-container-sm .ba-slider::after {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+}
+
+.logo-responsive {
+  transition: all 0.3s ease;
+}
+
+.dark .logo-responsive {
+  filter: brightness(0) invert(1) opacity(0.9);
+}
+
+.how-circle {
+  @apply bg-terracotta/10 text-terracotta;
+}
+
+.how-box.active .how-circle {
+  @apply bg-terracotta text-white;
+}
+
+.how-box.active {
+  @apply border-2 border-terracotta/40 shadow-2xl shadow-terracotta/10 -translate-y-1;
+}
