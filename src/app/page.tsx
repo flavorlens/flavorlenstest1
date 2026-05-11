@@ -351,7 +351,7 @@ function FlagEN() {
   );
 }
 
-function BeforeAfterSlider({ before, after, small = false, beforeLabel = "Before", afterLabel = "After" }: { before: string, after: string, small?: boolean, beforeLabel?: string, afterLabel?: string }) {
+function BeforeAfterSlider({ before, after, small = false, beforeLabel = "Original", afterLabel = "Optimiert" }: { before: string, after: string, small?: boolean, beforeLabel?: string, afterLabel?: string }) {
   const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -365,7 +365,7 @@ function BeforeAfterSlider({ before, after, small = false, beforeLabel = "Before
   return (
     <div 
       ref={containerRef}
-      className={`ba-container ${small ? 'ba-container-sm' : ''} shadow-2xl border-4 border-terracotta relative overflow-hidden group cursor-ew-resize`}
+      className={`ba-container ${small ? 'ba-container-sm' : ''} shadow-2xl border-4 border-terracotta relative overflow-hidden group cursor-ew-resize aspect-square w-full max-w-xl mx-auto rounded-3xl`}
       onMouseMove={(e) => handleMove(e.clientX)}
       onTouchMove={(e) => handleMove(e.touches[0].clientX)}
       onClick={(e) => handleMove(e.clientX)}
@@ -373,12 +373,16 @@ function BeforeAfterSlider({ before, after, small = false, beforeLabel = "Before
       <div className="ba-label ba-label-before absolute top-4 left-4 z-20 px-3 py-1 bg-black/50 text-white text-[10px] font-bold uppercase tracking-widest rounded-full opacity-0 group-hover:opacity-100 transition-opacity">{beforeLabel}</div>
       <div className="ba-label ba-label-after absolute top-4 right-4 z-20 px-3 py-1 bg-terracotta/80 text-white text-[10px] font-bold uppercase tracking-widest rounded-full opacity-0 group-hover:opacity-100 transition-opacity">{afterLabel}</div>
       
-      {/* Background is the AFTER image */}
-      <div className="ba-background absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${after}')` }}></div>
-      {/* Foreground is the BEFORE image, width controlled by slider */}
-      <div className="ba-foreground absolute inset-0 bg-cover bg-center" style={{ width: `${position}%`, backgroundImage: `url('${before}')` }}></div>
+      {/* Background is the AFTER (Optimiert) image - fixed at the bottom */}
+      <div className="ba-background absolute inset-0 bg-cover bg-center pointer-events-none" style={{ backgroundImage: `url('${after}')` }}></div>
       
-      <div className="ba-slider absolute top-0 bottom-0 w-1 bg-terracotta z-10 pointer-events-none" style={{ left: `${position}%` }}>
+      {/* Foreground is the BEFORE (Original) image - sliding overlay on the left */}
+      <div className="ba-foreground absolute inset-0 overflow-hidden z-10 pointer-events-none" style={{ width: `${position}%` }}>
+        <div className="absolute top-0 left-0 h-full bg-cover bg-center" style={{ backgroundImage: `url('${before}')`, width: '100cqw' }}></div>
+      </div>
+      
+      {/* Slider Handle */}
+      <div className="ba-slider absolute top-0 bottom-0 w-1 bg-terracotta z-20 pointer-events-none" style={{ left: `${position}%` }}>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-terracotta rounded-full flex items-center justify-center text-white shadow-xl">
           <span className="material-icons">unfold_more</span>
         </div>

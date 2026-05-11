@@ -1,0 +1,312 @@
+:root {
+    --terracotta: #A0522D;
+    --terracotta-hover: #8B4513;
+    --background-light: #F5F0E1;
+    --background-dark: #1a1f1a;
+    --sage: #3C4A3E;
+
+    --slider-handle-size: 48px;
+    --slider-border-width: 4px;
+}
+
+@layer base {
+    body {
+        background-color: var(--background-light);
+        font-family: 'Lexend', sans-serif;
+        color: var(--sage);
+    }
+}
+
+.text-sage {
+    color: #3C4A3E;
+}
+
+.bg-sage {
+    background-color: #3C4A3E;
+}
+
+.border-sage {
+    border-color: #3C4A3E;
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--terracotta);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--terracotta-hover);
+}
+
+
+.ba-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    cursor: ew-resize;
+    user-select: none;
+    background-color: #eee;
+    container-type: inline-size;
+}
+
+.ba-background,
+.ba-foreground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.ba-foreground {
+    width: 50%;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* For the nested image in foreground to prevent distortion - uses Container Query units */
+.ba-foreground div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100cqw;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.ba-slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: var(--terracotta);
+    z-index: 20;
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+.ba-slider::after {
+    content: "unfold_more";
+    font-family: 'Material Icons';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    width: 32px;
+    height: 32px;
+    background-color: var(--terracotta);
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-size: 18px;
+}
+
+.ba-label {
+    position: absolute;
+    top: 24px;
+    padding: 6px 16px;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 25;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ba-label-before {
+    left: 24px;
+}
+
+.ba-label-after {
+    right: 24px;
+}
+
+/* Small Sliders (Gallery) */
+.ba-container-sm .ba-label {
+    top: 16px;
+    padding: 4px 10px;
+    font-size: 9px;
+    backdrop-filter: blur(4px);
+}
+
+.ba-container-sm .ba-label-before {
+    left: 16px;
+}
+
+.ba-container-sm .ba-label-after {
+    right: 16px;
+}
+
+.ba-container-sm .ba-slider::after {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+}
+
+.logo-responsive {
+    transition: all 0.3s ease;
+}
+
+.dark .logo-responsive {
+    filter: brightness(0) invert(1) opacity(0.9);
+}
+
+.group:hover .logo-responsive {
+    transform: scale(1.05);
+}
+
+/* Modal Content Styling */
+#modal-body h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--sage);
+    margin-bottom: 1.5rem;
+}
+
+.dark #modal-body h3 {
+    color: white;
+}
+
+#modal-body h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--sage);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.dark #modal-body h4 {
+    color: white;
+}
+
+#modal-body p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+#modal-body p:last-child {
+    margin-bottom: 0;
+}
+
+#modal-body b,
+#modal-body strong {
+    color: var(--terracotta);
+    font-weight: 600;
+}
+
+#legal-modal.flex {
+    display: flex;
+}
+
+#legal-modal.hidden {
+    display: none;
+}
+
+/* Cookie Banner Styling */
+@media (prefers-reduced-motion: reduce) {
+
+    #cookie-banner,
+    #legal-modal,
+    #legal-modal div {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+#cookie-banner .bg-white {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.dark #cookie-banner .bg-white {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+#cookie-banner button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#accept-cookies:hover {
+    box-shadow: 0 4px 15px rgba(160, 82, 45, 0.3);
+}
+
+.dark #cookie-banner {
+    border-color: rgba(60, 74, 62, 0.2);
+}
+
+/* Fix dropdown option visibility for themes */
+select option {
+    background-color: var(--background-light);
+    color: var(--sage);
+}
+
+.dark select option {
+    background-color: var(--background-dark);
+    color: var(--background-light);
+}
+
+/* Badge Styling */
+.badge-container {
+    height: 90px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+}
+
+.badge-circle {
+    width: 5rem !important;
+    height: 5rem !important;
+    flex-shrink: 0 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    aspect-ratio: 1 / 1 !important;
+}
