@@ -89,7 +89,7 @@ export default function LandingPage() {
         <div>
           <span className="inline-block px-4 py-1 bg-terracotta/10 text-terracotta rounded-full text-xs font-bold uppercase tracking-widest mb-6">{t.hero.tag}</span>
           <h1 className="font-heading text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-8">
-            <span className="text-emerald-600 dark:text-emerald-400">{t.hero.title.realFood}</span> <br />
+            <span className="text-sage dark:text-white">{t.hero.title.realFood}</span> <br />
             <span className="text-terracotta">{t.hero.title.realVibrance}</span>
           </h1>
           <p className="text-lg lg:text-xl opacity-80 max-w-lg mb-10 leading-relaxed">{t.hero.description}</p>
